@@ -23,15 +23,13 @@ antingen via email eller Slack (eller annan kanal).
 Det första som behövs göras är att sätta upp de olika verktyg som
 används. De verktyg som ska installeras är:
 
-/** Needs some links to actual webpages */
-
-	 - [Docker](https://docs.docker.com/engine/installation/linux/archlinux/)
-	 - [Jenkins](https://jenkins.io/download/)
-	 - [Git](https://git-scm.com/) (installerad version på piff: 2.11.0)
-	 - [Chef](https://www.chef.io/) 
-	 - [PostgreSQL](https://www.postgresql.org/) (installerad version på piff: 9.6.1)
-	 - [Go](https://wiki.archlinux.org/index.php/Go)
-	 - [NGINX](http://nginx.org/) (installerad version på piff: 1.10.2 på grund av installerat paketet nginx istället för nginx-mainline. Om senare version krävs, byt till nginx-mainline)
+- [Docker](https://docs.docker.com/engine/installation/linux/archlinux/)
+- [Jenkins](https://jenkins.io/download/)
+- [Git](https://git-scm.com/) (installerad version på piff: 2.11.0)
+- [Chef](https://www.chef.io/) 
+- [PostgreSQL](https://www.postgresql.org/) (installerad version på piff: 9.6.1)
+- [Go](https://wiki.archlinux.org/index.php/Go)
+- [NGINX](http://nginx.org/) (installerad version på piff: 1.10.2 på grund av installerat paketet nginx istället för nginx-mainline. Om senare version krävs, byt till nginx-mainline)
 
 Notera att inte all mjukvara behöver vara på en och samma dator men
 det kan vara praktiskt om det är det, ur ett utvecklingsperspektiv.
