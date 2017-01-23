@@ -25,16 +25,18 @@ används. De verktyg som ska installeras är:
 
 /** Needs some links to actual webpages */
 
-	 - Docker
-	 - Jenkins
-	 - Git
-	 - Chef
-	 - PostgreSQL
-	 - Go
-	 - NGINX
+	 - [Docker](https://docs.docker.com/engine/installation/linux/archlinux/)
+	 - [Jenkins](https://jenkins.io/download/)
+	 - [Git](https://git-scm.com/) (installerad version på piff: 2.11.0)
+	 - [Chef](https://www.chef.io/) 
+	 - [PostgreSQL](https://www.postgresql.org/) (installerad version på piff: 9.6.1)
+	 - [Go](https://wiki.archlinux.org/index.php/Go)
+	 - [NGINX](http://nginx.org/) (installerad version på piff: 1.10.2 på grund av installerat paketet nginx istället för nginx-mainline. Om senare version krävs, byt till nginx-mainline)
 
 Notera att inte all mjukvara behöver vara på en och samma dator men
 det kan vara praktiskt om det är det, ur ett utvecklingsperspektiv.
+Datorn som vi hoppas använda är en Raspberry Pi 2 vid namn piff.
+Denna går att nå via beer.henziger.com och kör Arch linux med linuxkärnan 4.4.43-1-ARCH.
 
 Den applikation som används kommer att ha följande struktur:
 
