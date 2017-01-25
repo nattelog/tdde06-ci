@@ -14,8 +14,8 @@ import (
 
 const (
 	databaseUser = "postgres"
-	databaseHost = "db"
-	databaseName = "postgres"
+	databaseHost = "localhost"
+	databaseName = "tdde06"
 )
 
 type Task struct {
@@ -46,6 +46,7 @@ type ListCreateResponse struct {
 func CheckFatal(err error, w http.ResponseWriter) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		log.Fatal("Woopsiedaisy, you got the error sickness")
 	}
 }
 
@@ -71,7 +72,6 @@ func getURLParameter(path string) *string {
 func getLists(db *sql.DB, w http.ResponseWriter) []List {
 	rows, err := db.Query("select * from list")
 	CheckFatal(err, w)
-
 	// Retrieve all lists from the query
 	res := make([]List, 0)
 	for rows.Next() {
@@ -186,7 +186,9 @@ func ConnectDb() *sql.DB {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	if db == nil {
+		log.Fatal("Woops, this db is nil, not good for you!")
+	}
 	return db
 }
 
