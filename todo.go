@@ -46,7 +46,6 @@ type ListCreateResponse struct {
 func CheckFatal(err error, w http.ResponseWriter) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		log.Fatal("Woopsiedaisy, you got the error sickness")
 	}
 }
 
