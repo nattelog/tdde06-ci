@@ -121,6 +121,15 @@ detta fall 8080).
 
 5) Installera Jenkins och kör ett hello world exempel.
 
+Installation av Jenkins är väldigt enkelt, sudo pacman -S jenkins bör
+fungera utan problem. Sedan kör du igång jenkins på lämpligt sätt och
+därfeter är den nåbar på port 8090.
+
+En viktig detalj om man kör Jenkins på en lite svagare CPU, till exempel
+på en Raspberry Pi 2, är att det krävs en del tålamod för att låta Jenkins
+köra igång. Efter "INFO: Beginning extraction from war file" kan det dröja ca
+5 minuter innan något händer efter det. Tillfälle för :coffee:
+
 6) Sätt upp Jenkins att dra ner dit repo då en ändring sker (denna
 instans av Jenkins kommer att kallas för master).
 
