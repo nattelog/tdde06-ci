@@ -121,7 +121,7 @@ detta fall 8080).
 
 5) Installera Jenkins och kör ett hello world exempel.
 
-Installation av Jenkins är väldigt enkelt, sudo pacman -S jenkins bör
+Installation av Jenkins är väldigt enkelt, `sudo pacman -S jenkins` bör
 fungera utan problem. Sedan kör du igång jenkins på lämpligt sätt och
 därfeter är den nåbar på port 8090.
 
