@@ -134,6 +134,13 @@ Se även [XKCD](https://xkcd.com/303/)
 6) Sätt upp Jenkins att dra ner dit repo då en ändring sker (denna
 instans av Jenkins kommer att kallas för master).
 
+För detta behöver du installera Gitlab Plugin och Gitlab
+Authentication plugin. Dessa kan du installera genom jenkins inbyggda
+uppdateringscenter. Efter det så behöver du fixa ett item (en
+pipeline) i jenkins och välja att den ska triggas efter push ifrån
+gitlab. För att få notifikationerna så kommer du behöva gå in på
+gitlab och sätta upp en webhook. 
+
 7) Sätt upp en Jenkins slav och kör ett hello world exempel.
 
 8) Låt Jenkins master skicka vidare test till Jenkins slaven.
