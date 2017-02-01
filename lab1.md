@@ -26,7 +26,7 @@ används. De verktyg som ska installeras är:
 - [Docker](https://docs.docker.com/engine/installation/linux/archlinux/)
 - [Jenkins](https://jenkins.io/download/)
 - [Git](https://git-scm.com/) (installerad version på piff: 2.11.0)
-- [Chef](https://www.chef.io/) 
+- [Chef](https://www.chef.io/)
 - [PostgreSQL](https://www.postgresql.org/) (installerad version på piff: 9.6.1)
 - [Go](https://wiki.archlinux.org/index.php/Go)
 - [NGINX](http://nginx.org/) (installerad version på piff: 1.10.2 på grund av installerat paketet nginx istället för nginx-mainline. Om senare version krävs, byt till nginx-mainline)
@@ -61,7 +61,7 @@ Den rekommenderade ordningen att lösa delar i är:
 
 Du borde få en användare i databasen som heter postgres. och kan
 använda den för att skapa en databas. Du kan skapa en databas med
-hjälp utav `createdb mycooldatabasename`. 
+hjälp utav `createdb mycooldatabasename`.
 
 2) Installera Go och kör ett hello world exempel.
 
@@ -139,7 +139,23 @@ Authentication plugin. Dessa kan du installera genom jenkins inbyggda
 uppdateringscenter. Efter det så behöver du fixa ett item (en
 pipeline) i jenkins och välja att den ska triggas efter push ifrån
 gitlab. För att få notifikationerna så kommer du behöva gå in på
-gitlab och sätta upp en webhook. 
+gitlab och sätta upp en webhook.
+
+En alternativ approach är om du har ditt git projekt publikt, kanske på GitHub.
+Detta gör det lite enklare då din Jenkins-instans inte behöver autentisera
+mot git-repot när den clonar ner repot för att bygga/testa applikationen.
+
+I Jenkins är det viktigt att du har nån executor, antingen master själv
+eller en slave.
+
+Webhooken i GitHub ser ut som följer:
+https://user:password@jenkins.host.com/job/tdde06/build?token=TOKEN
+Content-Type: application/x-www-form-urlencoded
+
+Det vi ställer in på Jenkins, när vi skapat ett Fresstyle project (i Jenkins v.1)
+är att ange git som källkodshanteringssystem med rätt "URL of repository"
+Sen kryssade vi också i "Trigger builds remotely" och satte en authentication token.
+Denna token ska matchas i webhookens URL.
 
 7) Sätt upp en Jenkins slav och kör ett hello world exempel.
 
