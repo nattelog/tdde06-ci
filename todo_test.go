@@ -42,6 +42,8 @@ func TestTask(test *testing.T) {
     testServer := httptest.NewServer(Handlers())
     defer testServer.Close()
 
+    fmt.Println("URL: " + testServer.URL);
+
     // Create a new list for the different tasks
     b, err := json.Marshal(ListCreateRequest{Name: "Work"})
     checkFail(test, err)
