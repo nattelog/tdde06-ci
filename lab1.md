@@ -159,9 +159,36 @@ Denna token ska matchas i webhookens URL.
 
 7) Sätt upp en Jenkins slav och kör ett hello world exempel.
 
+Detta kan göras genom att sätta upp så att slaven ssh:ar in på den
+maskin som ska köra testerna. För att ssh:a in så behövs credentials
+för noden sättas upp. Detta kan man antingen göra i jenkins huvudmeny
+eller när man konfigurerar noden. (notera att noder och items inte är
+samma sak). SSH konfigureras under noden i fältet "Launch Method". Där
+skriver man in delvis vilken ip (eller domännamn om man är fancy) och
+väljer credentials. Du kan antingen välja att använda användarnamn och
+lösenord eller ssh nycklar. OBS! Ett problem som uppstod för oss är
+att Key Exchange Algorihms inte matchade för jenkins och slav
+datorn. Detta gjorde att jenkins fick ett fel (och sa "This is
+probably a bug in Jenkins"). 
+
 8) Låt Jenkins master skicka vidare test till Jenkins slaven.
 
+Detta sätts upp genom att gå in i det item du vill bygga (din
+pipeline/freestyle project) och antingen kör ett skript utifrån den,
+eller så skriver du ett test-skript på datorn som slaven kör på och
+kör det. Vi valde att göra ett testskript eftersom att vi kunde testa
+det lokalt. Då behöver man inte gå in och bygga genom Jenkins.  Var
+noga med att använda "exit" i det skript som testar och se till att
+det ger bra exit status. Om du exempelvis har echo "Hello, world" som
+sista kommando så kommer skriptet alltid att lyckas (oavsett om testen
+gick igenom eller inte).
+
 9) Skicka resultat ifrån Jenkins slav till email.
+
+Detta kan du antingen göra genom ditt testskript eller så kan du
+skicka detta genom Jenkins. Genom att gå in på ditt item i Jenkins och
+skapa ett nytt post-build action så kan du säga åt Jenkins att skicka
+mail efter att builden är klar. 
 
 Nu finns en runner som klarar av att göra alla delar som behövs. Nu
 krävs bara att processen ska containeriseras. Detta betyder att
@@ -178,3 +205,4 @@ att använda sig utav det.
 13) Skapa en bild för att köra postgresql
 
 14) Släng in alla bilderna i Jenkins slaven.
+
