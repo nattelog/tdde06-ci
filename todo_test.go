@@ -9,6 +9,7 @@ import (
     "strconv"
     "encoding/json"
     "bytes"
+    "fmt"
 )
 
 // checkFail fails the tests if err is an error (not nil)
