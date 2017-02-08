@@ -26,12 +26,16 @@ func setup(t *testing.T) {
     defer db.Close()
 
     sqlData, err := ioutil.ReadFile("schema.sql")
-    checkFail(t, err)
+    if err != nil {
+       t.Fatal(err)
+    }
 
     sqlStmts := string(sqlData)
     for _, stmt := range strings.Split(sqlStmts, ";") {
         _, err := db.Exec(stmt)
-        checkFail(t, err)
+        if err != nil {
+	   t.Fatal(err)
+        }
     }
 
 }
@@ -47,9 +51,18 @@ func TestTask(test *testing.T) {
 
     // Create a new list for the different tasks
     b, err := json.Marshal(ListCreateRequest{Name: "Work"})
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+
+    
     res, err := http.Post(testServer.URL + "/list", "application/json", bytes.NewReader(b))
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
 
     // Read the response and retrieve the id for the newly created list
     listResp := ListCreateResponse{}
@@ -59,7 +72,11 @@ func TestTask(test *testing.T) {
 
     // Get all the tasks from the new list
     res, err = http.Get(testServer.URL + "/list/" + strconv.Itoa(listResp.Id))
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     if res.StatusCode != 200 {
         test.Errorf("Expected 200 got %d", res.StatusCode)
     }
@@ -68,7 +85,11 @@ func TestTask(test *testing.T) {
     defer res.Body.Close()
     var tasks []Task
     err = json.Unmarshal(body, &tasks)
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
 
     // There shouldn't be any tasks in the list yet
     if len(tasks) != 0 {
@@ -77,16 +98,28 @@ func TestTask(test *testing.T) {
 
     // Test the creation of a task in the list
     b, err = json.Marshal(CreateTaskRequest{Name: "Work", ListId: listResp.Id})
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     res, err = http.Post(testServer.URL + "/task", "application/json", bytes.NewReader(b))
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     if res.StatusCode != 200 {
         test.Errorf("Expected 200, got %d")
     }
 
     // Test the if the task got stored in the list
     res, err = http.Get(testServer.URL + "/list/" + strconv.Itoa(listResp.Id))
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     if res.StatusCode != 200 {
         test.Errorf("Expected 200 got %d", res.StatusCode)
     }
@@ -95,7 +128,11 @@ func TestTask(test *testing.T) {
     body, err = ioutil.ReadAll(res.Body)
     defer res.Body.Close()
     err = json.Unmarshal(body, &tasks)
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     if len(tasks) != 1 {
         test.Errorf("Expected len(tasks) == 1 got %d", len(tasks))
     }
@@ -110,7 +147,11 @@ func TestList(test *testing.T) {
 
     // Retrieve the lists
     res, err := http.Get(testServer.URL + "/list")
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     body, err := ioutil.ReadAll(res.Body)
     res.Body.Close()
     if res.StatusCode != 200 {
@@ -120,7 +161,11 @@ func TestList(test *testing.T) {
     // Check that it didn't contain any lists
     var lists []List
     err = json.Unmarshal(body, &lists)
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
 
     if len(lists) != 0 {
         test.Errorf("Expected [] got %s", lists)
@@ -128,9 +173,17 @@ func TestList(test *testing.T) {
 
     // Test creation of a list
     b, err := json.Marshal(ListCreateRequest{Name: "Work"})
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     res, err = http.Post(testServer.URL + "/list", "application/json", bytes.NewReader(b))
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
 
     if res.StatusCode != 200 {
         test.Errorf("Expected status code 200 got %d", res.StatusCode)
@@ -138,7 +191,11 @@ func TestList(test *testing.T) {
 
     // Make sure that the list is stored
     res, err = http.Get(testServer.URL + "/list")
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     body, err = ioutil.ReadAll(res.Body)
     res.Body.Close()
 
@@ -147,7 +204,11 @@ func TestList(test *testing.T) {
     }
 
     err = json.Unmarshal(body, &lists)
-    checkFail(test, err)
+        if err != nil {
+	   test.Fatal(err)
+        }
+
+    
     if len(lists) != 1 {
         test.Errorf("Expected [] got %s", lists)
     }
