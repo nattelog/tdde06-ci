@@ -27,9 +27,13 @@
 
 *kör igång nginx containern*
 
-docker build -t nginxrunner -f nginx-dockerfile.txt
+docker build -t nginxrunner -f nginx-docker.txt
 
 *använd curl för att anropa applikationen och skapa lite listor och tasks*
+curl -X POST -H "Content-Type: application/json" -d '{"Name": "Party"}' localhost/list
+curl -X POST -H "Content-Type: application/json" -d '{"Name": "Balloons", "list_id": 2}' localhost/task
+curl localhost/list
+curl localhost/list/2
 
 
 # Demonstrering av git push
