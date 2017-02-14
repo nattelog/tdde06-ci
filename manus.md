@@ -44,6 +44,6 @@ docker build -t nginxrunner -f nginx-dockerfile.txt
 
 *Visa Jenkins och tdde06 item och att det finns en nod*
 
-*Visa build trigger i konfigurationen och visa webhook på gitlab*
+*Visa build trigger i konfigurationen och visa webhook på github*
 
 *Visa vad som körs (execute shell) och att ett mail kommer, om det går dåligt*
