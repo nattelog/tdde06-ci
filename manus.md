@@ -35,6 +35,8 @@ curl -X POST -H "Content-Type: application/json" -d '{"Name": "Balloons", "list_
 curl localhost/list
 curl localhost/list/2
 
+*run_everything.sh gör jobbet åt dig!*
+
 
 # Demonstrering av git push
 
