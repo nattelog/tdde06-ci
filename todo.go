@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	databaseUser = "postgres"
+	databaseUser = "baduser"
 	databaseHost = "localhost"
 	databaseName = "tdde06"
 )
