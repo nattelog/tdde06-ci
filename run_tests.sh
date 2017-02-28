@@ -1,6 +1,6 @@
 #!/bin/bash
 
-line="$(docker ps | grep $POSTGRESNAME)"
+line="$(docker ps -a | grep $POSTGRESNAME)"
 if [ -z "$line" ]
 then
 	echo "$POSTGRESNAME doesn't run, starting it"
