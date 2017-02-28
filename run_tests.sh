@@ -8,5 +8,5 @@ then
 	sleep 10; # This works 142% of the time!
 fi
 
-docker run --link $POSTGRESNAME:postgres -P library/golang /bin/bash -c "git clone $GIT_URL tdde06 && cd tdde06 && mkdir -p bin pkg src/main && python set_host.py && cp todo.go src/main/ && cp todo_test.go src/main/ && cd src/main/ && export GOPATH=/go/tdde06 && go get && cd ../../ && go test"
+docker run --link $POSTGRESNAME:postgres -P library/golang /bin/bash -c "git clone $GIT_URL tdde06 && cd tdde06 && mkdir -p bin pkg src/main && export POSTGRESNAME=$POSTGRESNAME && python set_host.py && cp todo.go src/main/ && cp todo_test.go src/main/ && cd src/main/ && export GOPATH=/go/tdde06 && go get && cd ../../ && go test"
 exit $?
