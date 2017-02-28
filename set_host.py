@@ -1,5 +1,7 @@
+import os
+
 hosts = open('/etc/hosts','r')
-hostname = "henadpostgres"
+hostname = os.environ['POSTGRESNAME']
 for line in hosts:
     if hostname in line:
         host = line.split()[0]
